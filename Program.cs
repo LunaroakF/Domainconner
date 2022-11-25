@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RealmconnerNet4._7._2
+namespace Domainconner
 {
     internal static class Program
     {

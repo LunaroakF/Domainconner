@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmconnerNet4.7.2", "RealmconnerNet4.7.2.csproj", "{5B149F39-CF82-404B-A942-D6883C062D41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domainconner", "Domainconner.csproj", "{5B149F39-CF82-404B-A942-D6883C062D41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

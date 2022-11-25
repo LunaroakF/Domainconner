@@ -10,11 +10,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RealmconnerNet4._7._2
+namespace Domainconner
 {
     public partial class Form1 : Form
     {
         System.Collections.ArrayList Mess = new System.Collections.ArrayList();
+        System.Collections.ArrayList ipms = new System.Collections.ArrayList();
+        System.Collections.ArrayList domainips = new System.Collections.ArrayList();
 
         public Form1()
         {
@@ -23,7 +25,7 @@ namespace RealmconnerNet4._7._2
         }
         private void Form1_Load(object sender, EventArgs e)
         { 
-        
+               
         }
 
             private void StartButton_Click(object sender, EventArgs e)
@@ -49,6 +51,12 @@ namespace RealmconnerNet4._7._2
                 catch
                 {
                     LogPrint("终止");
+
+                    if (checkBox2.Checked)
+                    {
+                        System.Media.SystemSounds.Beep.Play();
+                    }
+
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = true;
                     groupBox4.Enabled = true;
@@ -63,10 +71,10 @@ namespace RealmconnerNet4._7._2
                         if (ms!=-1)
                         {
                             LogPrint("[成功,延迟 "+ms.ToString()+"ms]" + RealmComboBox.Text + " 中的 " + IPBox.Lines[i]);
-                            HostsWhite(IPBox.Lines[i], RealmComboBox.Text+"     #"+ ms.ToString() + "ms");
-                            if (checkBox1.Checked)
+                            UsefulWrite(IPBox.Lines[i], RealmComboBox.Text, ms);
+                            if (!checkBox1.Checked)
                             {
-                                i = 999999;
+                                HostsWrite(IPBox.Lines[i], RealmComboBox.Text + "     #" + ms.ToString() + "ms");
                             }
                         }
                         else
@@ -74,12 +82,52 @@ namespace RealmconnerNet4._7._2
                             LogPrint("[失败] " + RealmComboBox.Text + " 中的 " + IPBox.Lines[i]);
                         }
                     }
+                    if (checkBox1.Checked)
+                    {
+                        Comparison();
+                    }
                 }
                 number++;
 
             }
         }
-        public void HostsWhite(string ip, string host)
+
+        public void UsefulWrite(string IP, string domain, int ms)
+        {
+            domainips.Add(IP);
+            ipms.Add(ms);
+        }
+
+        public void Comparison()
+        {
+            LogPrint("比较 " + RealmComboBox.Text + " 中延迟最小的IP...");
+            LogPrint("----------------------------------------------");
+            for (int i = 0; i < ipms.Count; i++)
+            {
+                LogPrint(domainips[i].ToString() + " " + RealmComboBox.Text + "     #" + ipms[i].ToString());
+            }
+            LogPrint("----------------------------------------------");
+            int Bestms = (int)ipms[0];
+            int BestNumber = 0;
+            string BestIP="";
+            for (int i = 0; i < ipms.Count; i++)
+            {
+                if (Bestms > (int)ipms[i])
+                {
+                    Bestms = (int)ipms[i];
+                    BestNumber = i;
+                    BestIP = domainips[i].ToString();
+                }
+            }
+            LogPrint(RealmComboBox.Text + " 中 "+ BestIP+" 最小延迟为 "+ Bestms.ToString()+"ms");
+            LogPrint("----------------------------------------------");
+            HostsWrite(BestIP, RealmComboBox.Text);
+
+            ipms = new System.Collections.ArrayList();
+            domainips = new System.Collections.ArrayList();
+        }
+
+        public void HostsWrite(string ip, string host)
         {
             string txt = ip + " " + host;
             HostsBox.Text = HostsBox.Text + txt + Environment.NewLine;
@@ -118,6 +166,7 @@ namespace RealmconnerNet4._7._2
         }
         private void reaaddbutton_Click(object sender, EventArgs e)
         {
+            Mess = new System.Collections.ArrayList();
             if (RealmBox.Text != String.Empty)
             {
                 if (!RealmComboBox.Items.Contains(RealmBox.Text))
@@ -126,8 +175,12 @@ namespace RealmconnerNet4._7._2
                     RealmComboBox.Items.Add(RealmBox.Text);
                     RealmComboBox.Text = RealmBox.Text;
                     RealmBox.Text = String.Empty;
+                    //IPBox.Text = String.Empty;
                     Mess.Add(txt);
                 }
+            }
+            else {
+                MessageBox.Show("值为空或已在列表中" + Environment.NewLine + "请选择该项在列出IP中修改", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void RealmComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -139,7 +192,16 @@ namespace RealmconnerNet4._7._2
                 {
                     i = 999999;
                     IPBox.Text = sArray[1];
+                    RealmBox.Text = String.Empty;
+                    reaaddbutton.Text = "修改";
                 }
+            }
+            if (RealmComboBox.Text == string.Empty)
+            {
+                readelbutton.Enabled = false;
+            }
+            else { 
+                readelbutton.Enabled = true;
             }
         }
 
@@ -153,6 +215,17 @@ namespace RealmconnerNet4._7._2
         {
             HostsBox.SelectionStart = this.HostsBox.Text.Length;
             HostsBox.ScrollToCaret();
+        }
+
+        private void RealmBox_TextChanged(object sender, EventArgs e)
+        {
+            if (RealmBox.Text != String.Empty&&RealmComboBox.Text!=String.Empty) {
+                reaaddbutton.Text = "添加";
+            }
+            if (RealmComboBox.Text == String.Empty && RealmComboBox.Text != String.Empty)
+            {
+                reaaddbutton.Text = "修改";
+            }
         }
     }
 }
