@@ -84,9 +84,9 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(8, 117);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(194, 21);
+            this.checkBox1.Size = new System.Drawing.Size(146, 21);
             this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "一个域名仅对应一个IP (优先级)";
+            this.checkBox1.Text = "IP域名一对一 (优先级)";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // reaaddbutton
