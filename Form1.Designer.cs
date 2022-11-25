@@ -225,6 +225,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.MaximizeBox = false;
 
         }
 
