@@ -119,7 +119,7 @@ namespace Domainconner
             LogPrint("----------------------------------------------");
             int Bestms = (int)ipms[0];
             int BestNumber = 0;
-            string BestIP="";
+            string BestIP= domainips[0].ToString();
             for (int i = 0; i < ipms.Count; i++)
             {
                 if (Bestms > (int)ipms[i])
