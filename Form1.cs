@@ -17,6 +17,7 @@ namespace Domainconner
         System.Collections.ArrayList Mess = new System.Collections.ArrayList();
         System.Collections.ArrayList ipms = new System.Collections.ArrayList();
         System.Collections.ArrayList domainips = new System.Collections.ArrayList();
+        public bool Compa = false;
 
         public Form1()
         {
@@ -33,6 +34,9 @@ namespace Domainconner
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
             groupBox4.Enabled = false;
+            ipms = new System.Collections.ArrayList();
+            domainips = new System.Collections.ArrayList();
+            Compa = false;
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
         }
@@ -65,12 +69,14 @@ namespace Domainconner
                 if (iswhile)
                 {
                     LogPrint("当前检测'" + RealmComboBox.Text + "'所记录IP的通断情况");
+                    Compa = false;
                     for (int i = 0; i < IPBox.Lines.Length; i++)
                     {
                         int ms = PingIp(IPBox.Lines[i]);
                         if (ms!=-1)
                         {
                             LogPrint("[成功,延迟 "+ms.ToString()+"ms]" + RealmComboBox.Text + " 中的 " + IPBox.Lines[i]);
+                            Compa = true;
                             UsefulWrite(IPBox.Lines[i], RealmComboBox.Text, ms);
                             if (!checkBox1.Checked)
                             {
@@ -82,9 +88,13 @@ namespace Domainconner
                             LogPrint("[失败] " + RealmComboBox.Text + " 中的 " + IPBox.Lines[i]);
                         }
                     }
-                    if (checkBox1.Checked)
+                    if (checkBox1.Checked&& Compa)
                     {
                         Comparison();
+                    }
+                    else if (checkBox1.Checked && !Compa)
+                    {
+                        LogPrint("无可用对象");
                     }
                 }
                 number++;
@@ -158,6 +168,17 @@ namespace Domainconner
         {
             if (MessageBox.Show("你确定要删除'" + RealmComboBox.Text + "'相关信息吗？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                for (int i = 0; i < Mess.Count; i++)
+                {
+                    string[] sArray = Mess[i].ToString().Split('*');
+                    if (sArray[0] == RealmComboBox.Text)
+                    { 
+                        Mess.RemoveAt(i);
+                        i = 999999;
+                    }
+                }
+
+
                 IPBox.Text = String.Empty;
                 RealmComboBox.Items.Remove(RealmComboBox.Text);
                 RealmComboBox.Text = String.Empty;
@@ -166,7 +187,7 @@ namespace Domainconner
         }
         private void reaaddbutton_Click(object sender, EventArgs e)
         {
-            Mess = new System.Collections.ArrayList();
+            //Mess = new System.Collections.ArrayList();
             if (RealmBox.Text != String.Empty)
             {
                 if (!RealmComboBox.Items.Contains(RealmBox.Text))
@@ -193,7 +214,7 @@ namespace Domainconner
                     i = 999999;
                     IPBox.Text = sArray[1];
                     RealmBox.Text = String.Empty;
-                    reaaddbutton.Text = "修改";
+                    //reaaddbutton.Text = "修改";
                 }
             }
             if (RealmComboBox.Text == string.Empty)
@@ -224,9 +245,8 @@ namespace Domainconner
             }
             if (RealmComboBox.Text == String.Empty && RealmComboBox.Text != String.Empty)
             {
-                reaaddbutton.Text = "修改";
+                //reaaddbutton.Text = "修改";
             }
         }
     }
 }
-
