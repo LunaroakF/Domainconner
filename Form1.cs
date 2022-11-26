@@ -114,7 +114,7 @@ namespace Domainconner
             LogPrint("----------------------------------------------");
             for (int i = 0; i < ipms.Count; i++)
             {
-                LogPrint(domainips[i].ToString() + " " + RealmComboBox.Text + "     #" + ipms[i].ToString());
+                LogPrint(domainips[i].ToString() + " " + RealmComboBox.Text + "     #" + ipms[i].ToString() + "ms");
             }
             LogPrint("----------------------------------------------");
             int Bestms = (int)ipms[0];
