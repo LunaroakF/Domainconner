@@ -60,7 +60,7 @@
             this.groupBox1.Controls.Add(this.RealmComboBox);
             this.groupBox1.Location = new System.Drawing.Point(6, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(226, 168);
+            this.groupBox1.Size = new System.Drawing.Size(263, 231);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "域名输入";
@@ -70,9 +70,9 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(8, 139);
+            this.checkBox2.Location = new System.Drawing.Point(6, 195);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(135, 21);
+            this.checkBox2.Size = new System.Drawing.Size(227, 32);
             this.checkBox2.TabIndex = 6;
             this.checkBox2.Text = "处理完毕后声音提醒";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -82,18 +82,19 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(8, 117);
+            this.checkBox1.Location = new System.Drawing.Point(6, 157);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(146, 21);
+            this.checkBox1.Size = new System.Drawing.Size(245, 32);
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "IP域名一对一 (优先级)";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // reaaddbutton
             // 
-            this.reaaddbutton.Location = new System.Drawing.Point(153, 82);
+            this.reaaddbutton.Location = new System.Drawing.Point(188, 111);
             this.reaaddbutton.Name = "reaaddbutton";
-            this.reaaddbutton.Size = new System.Drawing.Size(65, 31);
+            this.reaaddbutton.Size = new System.Drawing.Size(65, 40);
             this.reaaddbutton.TabIndex = 4;
             this.reaaddbutton.Text = "添加";
             this.reaaddbutton.UseVisualStyleBackColor = true;
@@ -101,9 +102,9 @@
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(81, 82);
+            this.StartButton.Location = new System.Drawing.Point(95, 111);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(65, 31);
+            this.StartButton.Size = new System.Drawing.Size(65, 40);
             this.StartButton.TabIndex = 3;
             this.StartButton.Text = "开始";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -112,9 +113,9 @@
             // readelbutton
             // 
             this.readelbutton.Enabled = false;
-            this.readelbutton.Location = new System.Drawing.Point(8, 82);
+            this.readelbutton.Location = new System.Drawing.Point(6, 111);
             this.readelbutton.Name = "readelbutton";
-            this.readelbutton.Size = new System.Drawing.Size(65, 31);
+            this.readelbutton.Size = new System.Drawing.Size(65, 40);
             this.readelbutton.TabIndex = 2;
             this.readelbutton.Text = "删除";
             this.readelbutton.UseVisualStyleBackColor = true;
@@ -122,9 +123,9 @@
             // 
             // RealmBox
             // 
-            this.RealmBox.Location = new System.Drawing.Point(8, 50);
+            this.RealmBox.Location = new System.Drawing.Point(6, 70);
             this.RealmBox.Name = "RealmBox";
-            this.RealmBox.Size = new System.Drawing.Size(210, 23);
+            this.RealmBox.Size = new System.Drawing.Size(247, 35);
             this.RealmBox.TabIndex = 1;
             this.RealmBox.TextChanged += new System.EventHandler(this.RealmBox_TextChanged);
             // 
@@ -132,49 +133,49 @@
             // 
             this.RealmComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RealmComboBox.FormattingEnabled = true;
-            this.RealmComboBox.Location = new System.Drawing.Point(8, 21);
+            this.RealmComboBox.Location = new System.Drawing.Point(8, 29);
             this.RealmComboBox.Name = "RealmComboBox";
-            this.RealmComboBox.Size = new System.Drawing.Size(210, 25);
+            this.RealmComboBox.Size = new System.Drawing.Size(245, 36);
             this.RealmComboBox.TabIndex = 2;
             this.RealmComboBox.SelectedIndexChanged += new System.EventHandler(this.RealmComboBox_SelectedValueChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.IPBox);
-            this.groupBox2.Location = new System.Drawing.Point(6, 179);
+            this.groupBox2.Location = new System.Drawing.Point(6, 238);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(226, 281);
+            this.groupBox2.Size = new System.Drawing.Size(263, 281);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "可用IP";
             // 
             // IPBox
             // 
-            this.IPBox.Location = new System.Drawing.Point(8, 24);
+            this.IPBox.Location = new System.Drawing.Point(8, 34);
             this.IPBox.Multiline = true;
             this.IPBox.Name = "IPBox";
             this.IPBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.IPBox.Size = new System.Drawing.Size(210, 250);
+            this.IPBox.Size = new System.Drawing.Size(245, 240);
             this.IPBox.TabIndex = 1;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.LogBox);
-            this.groupBox3.Location = new System.Drawing.Point(242, 5);
+            this.groupBox3.Location = new System.Drawing.Point(275, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(356, 244);
+            this.groupBox3.Size = new System.Drawing.Size(356, 231);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "日志";
             // 
             // LogBox
             // 
-            this.LogBox.Location = new System.Drawing.Point(6, 24);
+            this.LogBox.Location = new System.Drawing.Point(6, 29);
             this.LogBox.Multiline = true;
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.LogBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.LogBox.Size = new System.Drawing.Size(338, 207);
+            this.LogBox.Size = new System.Drawing.Size(350, 196);
             this.LogBox.TabIndex = 1;
             this.LogBox.WordWrap = false;
             this.LogBox.TextChanged += new System.EventHandler(this.LogBox_TextChanged);
@@ -182,28 +183,28 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.HostsBox);
-            this.groupBox4.Location = new System.Drawing.Point(242, 255);
+            this.groupBox4.Location = new System.Drawing.Point(278, 238);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(353, 199);
+            this.groupBox4.Size = new System.Drawing.Size(353, 281);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hosts输出";
             // 
             // HostsBox
             // 
-            this.HostsBox.Location = new System.Drawing.Point(6, 24);
+            this.HostsBox.Location = new System.Drawing.Point(6, 34);
             this.HostsBox.Multiline = true;
             this.HostsBox.Name = "HostsBox";
             this.HostsBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.HostsBox.Size = new System.Drawing.Size(338, 169);
+            this.HostsBox.Size = new System.Drawing.Size(338, 240);
             this.HostsBox.TabIndex = 1;
             this.HostsBox.TextChanged += new System.EventHandler(this.HostsBox_TextChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 472);
+            this.ClientSize = new System.Drawing.Size(643, 531);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -212,6 +213,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nepeta cataria";
@@ -225,7 +227,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
-            this.MaximizeBox = false;
 
         }
 

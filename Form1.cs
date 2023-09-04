@@ -248,5 +248,10 @@ namespace Domainconner
                 //reaaddbutton.Text = "修改";
             }
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
