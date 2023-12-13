@@ -59,5 +59,14 @@ namespace Domainconner.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 &quot;----------------------------------------------&quot; 的本地化字符串。
+        /// </summary>
+        internal static string spliter {
+            get {
+                return ResourceManager.GetString("spliter", resourceCulture);
+            }
+        }
     }
 }

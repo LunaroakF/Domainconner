@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domainconner.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace Domainconner
 
         public Form1()
         {
+            AutoScaleMode = AutoScaleMode.Dpi;
             InitializeComponent();
             System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
         }
@@ -111,12 +113,12 @@ namespace Domainconner
         public void Comparison()
         {
             LogPrint("比较 " + RealmComboBox.Text + " 中延迟最小的IP...");
-            LogPrint("----------------------------------------------");
+            LogPrint(Strings.spliter);
             for (int i = 0; i < ipms.Count; i++)
             {
                 LogPrint(domainips[i].ToString() + " " + RealmComboBox.Text + "     #" + ipms[i].ToString() + "ms");
             }
-            LogPrint("----------------------------------------------");
+            LogPrint(Strings.spliter);
             int Bestms = (int)ipms[0];
             int BestNumber = 0;
             string BestIP= domainips[0].ToString();
@@ -130,7 +132,7 @@ namespace Domainconner
                 }
             }
             LogPrint(RealmComboBox.Text + " 中 "+ BestIP+" 最小延迟为 "+ Bestms.ToString()+"ms");
-            LogPrint("----------------------------------------------");
+            LogPrint(Resources.spliter);
             HostsWrite(BestIP, RealmComboBox.Text);
 
             ipms = new System.Collections.ArrayList();
@@ -237,7 +239,6 @@ namespace Domainconner
             HostsBox.SelectionStart = this.HostsBox.Text.Length;
             HostsBox.ScrollToCaret();
         }
-
         private void RealmBox_TextChanged(object sender, EventArgs e)
         {
             if (RealmBox.Text != String.Empty&&RealmComboBox.Text!=String.Empty) {
@@ -250,6 +251,11 @@ namespace Domainconner
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IPBox_TextChanged(object sender, EventArgs e)
         {
 
         }
