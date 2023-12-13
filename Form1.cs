@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -18,6 +19,7 @@ namespace Domainconner
         System.Collections.ArrayList Mess = new System.Collections.ArrayList();
         System.Collections.ArrayList ipms = new System.Collections.ArrayList();
         System.Collections.ArrayList domainips = new System.Collections.ArrayList();
+        public bool IsTheFirstTime = true;
         public bool Compa = false;
 
         public Form1()
@@ -27,8 +29,8 @@ namespace Domainconner
             System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
         }
         private void Form1_Load(object sender, EventArgs e)
-        { 
-               
+        {
+            RealmComboBox.SelectedIndex = 0;
         }
 
             private void StartButton_Click(object sender, EventArgs e)
@@ -45,7 +47,7 @@ namespace Domainconner
 
         public void run()
         {
-            int number = 0;
+            int number = 1;
             bool iswhile = true;
             while (iswhile)
             {
@@ -168,27 +170,33 @@ namespace Domainconner
 
         private void readelbutton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("你确定要删除'" + RealmComboBox.Text + "'相关信息吗？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (RealmComboBox.SelectedIndex != 0)
             {
-                for (int i = 0; i < Mess.Count; i++)
+                if (MessageBox.Show("你确定要删除'" + RealmComboBox.Text + "'相关信息吗？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    string[] sArray = Mess[i].ToString().Split('*');
-                    if (sArray[0] == RealmComboBox.Text)
-                    { 
-                        Mess.RemoveAt(i);
-                        i = 999999;
+                    for (int i = 0; i < Mess.Count; i++)
+                    {
+                        string[] sArray = Mess[i].ToString().Split('*');
+                        if (sArray[0] == RealmComboBox.Text)
+                        {
+                            Mess.RemoveAt(i);
+                            i = 999999;
+                        }
                     }
+                    IPBox.Text = String.Empty;
+                    RealmComboBox.Items.Remove(RealmComboBox.Text);
+                    RealmComboBox.SelectedIndex = 0;
+                    RealmComboBox.ResetText();
                 }
-
-
-                IPBox.Text = String.Empty;
-                RealmComboBox.Items.Remove(RealmComboBox.Text);
-                RealmComboBox.Text = String.Empty;
-                RealmComboBox.ResetText();
             }
         }
         private void reaaddbutton_Click(object sender, EventArgs e)
         {
+            if (IsTheFirstTime)
+            {
+
+                IsTheFirstTime = false;
+            }
             //Mess = new System.Collections.ArrayList();
             if (RealmBox.Text != String.Empty)
             {
@@ -200,6 +208,10 @@ namespace Domainconner
                     RealmBox.Text = String.Empty;
                     //IPBox.Text = String.Empty;
                     Mess.Add(txt);
+                }
+                else
+                {
+                    MessageBox.Show("值为空或已在列表中" + Environment.NewLine + "请选择该项在列出IP中修改", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else {
@@ -217,6 +229,10 @@ namespace Domainconner
                     IPBox.Text = sArray[1];
                     RealmBox.Text = String.Empty;
                     //reaaddbutton.Text = "修改";
+                }
+                else
+                {
+                    IPBox.Text = String.Empty;
                 }
             }
             if (RealmComboBox.Text == string.Empty)
@@ -258,6 +274,33 @@ namespace Domainconner
         private void IPBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        public void CmdLine(string str)//调用cmd命令行
+        {
+            try
+            {
+                using (Process process = new Process())
+                {
+                    process.StartInfo.FileName = "cmd.exe";//调用cmd.exe程序
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardInput = true;//重定向标准输入
+                    process.StartInfo.RedirectStandardOutput = true;//重定向标准输出
+                    process.StartInfo.RedirectStandardError = true;//重定向标准出错
+                    process.StartInfo.CreateNoWindow = true;//不显示黑窗口
+                    process.Start();//开始调用执行
+                    process.StandardInput.WriteLine(str + "&exit");//标准输入str + "&exit"，相等于在cmd黑窗口输入str + "&exit"
+                    process.StandardInput.AutoFlush = true;//刷新缓冲流，执行缓冲区的命令，相当于输入命令之后回车执行
+                    process.WaitForExit();//等待退出
+                    process.Close();//关闭进程
+                }
+            }
+            catch
+            {
+            }
+        }
+        private void hostsButton_Click(object sender, EventArgs e)
+        {
+            CmdLine("notepad C:\\Windows\\System32\\drivers\\etc\\hosts");
         }
     }
 }

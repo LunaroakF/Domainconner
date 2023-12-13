@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.hostsButton = new System.Windows.Forms.Button();
             this.HelpButton = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -44,7 +45,6 @@
             this.LogBox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.HostsBox = new System.Windows.Forms.TextBox();
-            this.hostsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -70,6 +70,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "域名输入";
+            // 
+            // hostsButton
+            // 
+            this.hostsButton.Location = new System.Drawing.Point(90, 168);
+            this.hostsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.hostsButton.Name = "hostsButton";
+            this.hostsButton.Size = new System.Drawing.Size(161, 46);
+            this.hostsButton.TabIndex = 8;
+            this.hostsButton.Text = "编辑Hosts";
+            this.hostsButton.UseVisualStyleBackColor = true;
+            this.hostsButton.Click += new System.EventHandler(this.hostsButton_Click);
             // 
             // HelpButton
             // 
@@ -156,6 +167,8 @@
             this.RealmComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RealmComboBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.RealmComboBox.FormattingEnabled = true;
+            this.RealmComboBox.Items.AddRange(new object[] {
+            "(候选域名集)"});
             this.RealmComboBox.Location = new System.Drawing.Point(9, 32);
             this.RealmComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.RealmComboBox.Name = "RealmComboBox";
@@ -191,11 +204,11 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.LogBox);
-            this.groupBox3.Location = new System.Drawing.Point(276, 12);
+            this.groupBox3.Location = new System.Drawing.Point(276, 4);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(370, 312);
+            this.groupBox3.Size = new System.Drawing.Size(682, 320);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "日志";
@@ -209,7 +222,7 @@
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.LogBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.LogBox.Size = new System.Drawing.Size(362, 276);
+            this.LogBox.Size = new System.Drawing.Size(674, 284);
             this.LogBox.TabIndex = 1;
             this.LogBox.WordWrap = false;
             this.LogBox.TextChanged += new System.EventHandler(this.LogBox_TextChanged);
@@ -221,7 +234,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(369, 282);
+            this.groupBox4.Size = new System.Drawing.Size(682, 282);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hosts输出";
@@ -234,19 +247,9 @@
             this.HostsBox.Multiline = true;
             this.HostsBox.Name = "HostsBox";
             this.HostsBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.HostsBox.Size = new System.Drawing.Size(361, 246);
+            this.HostsBox.Size = new System.Drawing.Size(674, 246);
             this.HostsBox.TabIndex = 1;
             this.HostsBox.TextChanged += new System.EventHandler(this.HostsBox_TextChanged);
-            // 
-            // hostsButton
-            // 
-            this.hostsButton.Location = new System.Drawing.Point(172, 168);
-            this.hostsButton.Margin = new System.Windows.Forms.Padding(4);
-            this.hostsButton.Name = "hostsButton";
-            this.hostsButton.Size = new System.Drawing.Size(79, 46);
-            this.hostsButton.TabIndex = 8;
-            this.hostsButton.Text = "Hosts";
-            this.hostsButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -254,7 +257,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(658, 625);
+            this.ClientSize = new System.Drawing.Size(971, 625);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -262,7 +265,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
