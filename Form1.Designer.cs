@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.hostsButton = new System.Windows.Forms.Button();
-            this.HelpButton = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.reaaddbutton = new System.Windows.Forms.Button();
@@ -54,7 +53,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.hostsButton);
-            this.groupBox1.Controls.Add(this.HelpButton);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.reaaddbutton);
@@ -73,24 +71,14 @@
             // 
             // hostsButton
             // 
-            this.hostsButton.Location = new System.Drawing.Point(90, 168);
+            this.hostsButton.Location = new System.Drawing.Point(9, 168);
             this.hostsButton.Margin = new System.Windows.Forms.Padding(4);
             this.hostsButton.Name = "hostsButton";
-            this.hostsButton.Size = new System.Drawing.Size(161, 46);
+            this.hostsButton.Size = new System.Drawing.Size(242, 46);
             this.hostsButton.TabIndex = 8;
             this.hostsButton.Text = "编辑Hosts";
             this.hostsButton.UseVisualStyleBackColor = true;
             this.hostsButton.Click += new System.EventHandler(this.hostsButton_Click);
-            // 
-            // HelpButton
-            // 
-            this.HelpButton.Location = new System.Drawing.Point(9, 168);
-            this.HelpButton.Margin = new System.Windows.Forms.Padding(4);
-            this.HelpButton.Name = "HelpButton";
-            this.HelpButton.Size = new System.Drawing.Size(79, 46);
-            this.HelpButton.TabIndex = 7;
-            this.HelpButton.Text = "教程";
-            this.HelpButton.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
@@ -117,7 +105,6 @@
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "IP域名一对一 (优先级)";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // reaaddbutton
             // 
@@ -199,7 +186,6 @@
             this.IPBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.IPBox.Size = new System.Drawing.Size(260, 246);
             this.IPBox.TabIndex = 1;
-            this.IPBox.TextChanged += new System.EventHandler(this.IPBox_TextChanged);
             // 
             // groupBox3
             // 
@@ -299,7 +285,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox HostsBox;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button HelpButton;
         private System.Windows.Forms.Button hostsButton;
     }
 }

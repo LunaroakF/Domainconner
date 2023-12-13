@@ -19,21 +19,17 @@ namespace Domainconner
         System.Collections.ArrayList Mess = new System.Collections.ArrayList();
         System.Collections.ArrayList ipms = new System.Collections.ArrayList();
         System.Collections.ArrayList domainips = new System.Collections.ArrayList();
-        public bool IsTheFirstTime = true;
         public bool Compa = false;
-
         public Form1()
         {
-            AutoScaleMode = AutoScaleMode.Dpi;
             InitializeComponent();
-            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
+            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;//取消多线程警告
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             RealmComboBox.SelectedIndex = 0;
         }
-
-            private void StartButton_Click(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
@@ -44,7 +40,6 @@ namespace Domainconner
             Thread thread = new Thread(new ThreadStart(run));
             thread.Start();
         }
-
         public void run()
         {
             int number = 1;
@@ -105,22 +100,20 @@ namespace Domainconner
 
             }
         }
-
         public void UsefulWrite(string IP, string domain, int ms)
         {
             domainips.Add(IP);
             ipms.Add(ms);
         }
-
         public void Comparison()
         {
             LogPrint("比较 " + RealmComboBox.Text + " 中延迟最小的IP...");
-            LogPrint(Strings.spliter);
+            LogPrint(Resources.spliter);
             for (int i = 0; i < ipms.Count; i++)
             {
                 LogPrint(domainips[i].ToString() + " " + RealmComboBox.Text + "     #" + ipms[i].ToString() + "ms");
             }
-            LogPrint(Strings.spliter);
+            LogPrint(Resources.spliter);
             int Bestms = (int)ipms[0];
             int BestNumber = 0;
             string BestIP= domainips[0].ToString();
@@ -140,7 +133,6 @@ namespace Domainconner
             ipms = new System.Collections.ArrayList();
             domainips = new System.Collections.ArrayList();
         }
-
         public void HostsWrite(string ip, string host)
         {
             string txt = ip + " " + host;
@@ -150,7 +142,6 @@ namespace Domainconner
         {
             LogBox.Text = LogBox.Text + Log + Environment.NewLine;
         }
-
         private static int PingIp(string strIP)
         {
             int bRet = -1;
@@ -167,11 +158,11 @@ namespace Domainconner
             }
             return bRet;
         }
-
         private void readelbutton_Click(object sender, EventArgs e)
         {
             if (RealmComboBox.SelectedIndex != 0)
             {
+                int CurrentSelect = RealmComboBox.SelectedIndex;
                 if (MessageBox.Show("你确定要删除'" + RealmComboBox.Text + "'相关信息吗？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     for (int i = 0; i < Mess.Count; i++)
@@ -180,23 +171,18 @@ namespace Domainconner
                         if (sArray[0] == RealmComboBox.Text)
                         {
                             Mess.RemoveAt(i);
-                            i = 999999;
+                            break;
                         }
                     }
                     IPBox.Text = String.Empty;
                     RealmComboBox.Items.Remove(RealmComboBox.Text);
-                    RealmComboBox.SelectedIndex = 0;
+                    RealmComboBox.SelectedIndex = CurrentSelect-1;
                     RealmComboBox.ResetText();
                 }
             }
         }
         private void reaaddbutton_Click(object sender, EventArgs e)
         {
-            if (IsTheFirstTime)
-            {
-
-                IsTheFirstTime = false;
-            }
             //Mess = new System.Collections.ArrayList();
             if (RealmBox.Text != String.Empty)
             {
@@ -225,37 +211,36 @@ namespace Domainconner
                 string[] sArray = Mess[i].ToString().Split('*');
                 if (sArray[0] == RealmComboBox.Text)
                 {
-                    i = 999999;
                     IPBox.Text = sArray[1];
                     RealmBox.Text = String.Empty;
+                    break;
                     //reaaddbutton.Text = "修改";
                 }
                 else
                 {
-                    IPBox.Text = String.Empty;
+                    //IPBox.Text = String.Empty;
                 }
             }
-            if (RealmComboBox.Text == string.Empty)
+            if (RealmComboBox.SelectedIndex==0)
             {
                 readelbutton.Enabled = false;
+                IPBox.Text = String.Empty;
             }
             else { 
                 readelbutton.Enabled = true;
             }
         }
-
         private void LogBox_TextChanged(object sender, EventArgs e)
         {
             LogBox.SelectionStart = this.LogBox.Text.Length;
             LogBox.ScrollToCaret();
-        }
-
+        }//日志输出框滚轮置底
         private void HostsBox_TextChanged(object sender, EventArgs e)
         {
             HostsBox.SelectionStart = this.HostsBox.Text.Length;
             HostsBox.ScrollToCaret();
-        }
-        private void RealmBox_TextChanged(object sender, EventArgs e)
+        }//Hosts输出框滚轮置底
+        private void RealmBox_TextChanged(object sender, EventArgs e)//域名输入框变化
         {
             if (RealmBox.Text != String.Empty&&RealmComboBox.Text!=String.Empty) {
                 reaaddbutton.Text = "添加";
@@ -264,16 +249,6 @@ namespace Domainconner
             {
                 //reaaddbutton.Text = "修改";
             }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void IPBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
         public void CmdLine(string str)//调用cmd命令行
         {
@@ -294,13 +269,11 @@ namespace Domainconner
                     process.Close();//关闭进程
                 }
             }
-            catch
-            {
-            }
+            catch { }
         }
         private void hostsButton_Click(object sender, EventArgs e)
         {
             CmdLine("notepad C:\\Windows\\System32\\drivers\\etc\\hosts");
-        }
+        }//点击编辑Hosts按钮
     }
 }
