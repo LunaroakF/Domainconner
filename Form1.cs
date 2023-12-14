@@ -252,10 +252,14 @@ namespace Domainconner
         }
         private void hostsButton_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo(@"C:\Windows\Notepad.exe", @"C:\Windows\System32\drivers\etc\hosts");
-            info.UseShellExecute = true;
-            info.Verb = "runas";
-            Process.Start(info);
+            try
+            {
+                ProcessStartInfo info = new ProcessStartInfo(@"C:\Windows\Notepad.exe", @"C:\Windows\System32\drivers\etc\hosts");
+                info.UseShellExecute = true;
+                info.Verb = "runas";
+                Process.Start(info);
+            }
+            catch { }
         }//点击编辑Hosts按钮
     }
 }
